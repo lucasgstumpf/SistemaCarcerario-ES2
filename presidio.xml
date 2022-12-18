@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="17.0.5" class="java.beans.XMLDecoder">
+ <object class="com.es2.sistemaprisional.model.Presidio">
+  <void property="celas">
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="com.es2.sistemaprisional.model.Cela">
+      <void property="aberto">
+       <boolean>true</boolean>
+      </void>
+      <void property="ocupado">
+       <boolean>true</boolean>
+      </void>
+      <void property="presidiario">
+       <object class="com.es2.sistemaprisional.model.Presidiario" id="Presidiario0">
+        <void property="atividades">
+         <object class="java.util.ArrayList" id="ArrayList0">
+          <void method="add">
+           <object class="com.es2.sistemaprisional.model.Atividade">
+            <void property="comunitaria">
+             <boolean>true</boolean>
+            </void>
+            <void property="funcionario">
+             <object class="com.es2.sistemaprisional.model.Funcionario" id="Funcionario0">
+              <void property="aposentado">
+               <boolean>true</boolean>
+              </void>
+              <void property="cargo">
+               <string>funcionario</string>
+              </void>
+              <void property="cpf">
+               <string>123456789</string>
+              </void>
+              <void property="emFerias">
+               <boolean>true</boolean>
+              </void>
+              <void property="email">
+               <string>nome@email.com</string>
+              </void>
+              <void property="nome">
+               <string>nome</string>
+              </void>
+              <void property="nomePresidio">
+               <string>presidio</string>
+              </void>
+             </object>
+            </void>
+            <void property="nomeAtividade">
+             <string>atividade</string>
+            </void>
+            <void property="qtdDiasPenaReduzida">
+             <int>30</int>
+            </void>
+           </object>
+          </void>
+          <void method="add">
+           <object class="com.es2.sistemaprisional.model.Atividade">
+            <void property="comunitaria">
+             <boolean>true</boolean>
+            </void>
+            <void property="funcionario">
+             <object class="com.es2.sistemaprisional.model.Seguranca" id="Seguranca0">
+              <void property="aposentado">
+               <boolean>true</boolean>
+              </void>
+              <void property="cargo">
+               <string>seguranca</string>
+              </void>
+              <void property="cpf">
+               <string>123456789</string>
+              </void>
+              <void property="emFerias">
+               <boolean>true</boolean>
+              </void>
+              <void property="email">
+               <string>nome1@email.com</string>
+              </void>
+              <void property="id">
+               <int>1</int>
+              </void>
+              <void property="nome">
+               <string>nome 1</string>
+              </void>
+              <void property="nomePresidio">
+               <string>presidio</string>
+              </void>
+              <void property="setor">
+               <string>setor 1</string>
+              </void>
+             </object>
+            </void>
+            <void property="nomeAtividade">
+             <string>atividade1</string>
+            </void>
+            <void property="qtdDiasPenaReduzida">
+             <int>30</int>
+            </void>
+           </object>
+          </void>
+         </object>
+        </void>
+        <void property="cpf">
+         <string>12345678</string>
+        </void>
+        <void property="dataNascimento">
+         <string>10/10/2010</string>
+        </void>
+        <void property="nome">
+         <string>Lucas Voltera</string>
+        </void>
+        <void property="setor">
+         <string>setor 1</string>
+        </void>
+        <void property="ultimoDiaDePena">
+         <object class="java.util.GregorianCalendar">
+          <void property="time">
+           <object class="java.util.Date">
+            <long>1636567800000</long>
+           </object>
+          </void>
+         </object>
+        </void>
+       </object>
+      </void>
+      <void property="setor">
+       <string>setor1</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.es2.sistemaprisional.model.Cela">
+      <void property="aberto">
+       <boolean>true</boolean>
+      </void>
+      <void property="ocupado">
+       <boolean>true</boolean>
+      </void>
+      <void property="presidiario">
+       <object class="com.es2.sistemaprisional.model.Presidiario" id="Presidiario1">
+        <void property="atividades">
+         <object idref="ArrayList0"/>
+        </void>
+        <void property="cpf">
+         <string>12345678</string>
+        </void>
+        <void property="dataNascimento">
+         <string>10/10/2010</string>
+        </void>
+        <void property="nome">
+         <string>Rafael Correia</string>
+        </void>
+        <void property="setor">
+         <string>setor 1</string>
+        </void>
+        <void property="ultimoDiaDePena">
+         <object class="java.util.GregorianCalendar">
+          <void property="time">
+           <object class="java.util.Date">
+            <long>1636567800000</long>
+           </object>
+          </void>
+         </object>
+        </void>
+       </object>
+      </void>
+      <void property="setor">
+       <string>setor1</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.es2.sistemaprisional.model.Cela">
+      <void property="aberto">
+       <boolean>true</boolean>
+      </void>
+      <void property="ocupado">
+       <boolean>true</boolean>
+      </void>
+      <void property="presidiario">
+       <object class="com.es2.sistemaprisional.model.Presidiario" id="Presidiario2">
+        <void property="atividades">
+         <object idref="ArrayList0"/>
+        </void>
+        <void property="cpf">
+         <string>12345678</string>
+        </void>
+        <void property="dataNascimento">
+         <string>10/10/2010</string>
+        </void>
+        <void property="nome">
+         <string>Guilherme Batalhoti</string>
+        </void>
+        <void property="setor">
+         <string>setor 1</string>
+        </void>
+        <void property="ultimoDiaDePena">
+         <object class="java.util.GregorianCalendar">
+          <void property="time">
+           <object class="java.util.Date">
+            <long>1636567800000</long>
+           </object>
+          </void>
+         </object>
+        </void>
+       </object>
+      </void>
+      <void property="setor">
+       <string>setor1</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void property="funcionarios">
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object idref="Funcionario0"/>
+    </void>
+    <void method="add">
+     <object idref="Seguranca0"/>
+    </void>
+    <void method="add">
+     <object class="com.es2.sistemaprisional.model.Diretor">
+      <void property="aposentado">
+       <boolean>true</boolean>
+      </void>
+      <void property="cargo">
+       <string>diretor</string>
+      </void>
+      <void property="cpf">
+       <string>123456789</string>
+      </void>
+      <void property="emFerias">
+       <boolean>true</boolean>
+      </void>
+      <void property="email">
+       <string>nome2@email.com</string>
+      </void>
+      <void property="id">
+       <int>2</int>
+      </void>
+      <void property="nome">
+       <string>nome 2</string>
+      </void>
+      <void property="nomePresidio">
+       <string>presidio</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void property="horario">
+   <object class="java.util.GregorianCalendar" id="GregorianCalendar0">
+    <void property="time">
+     <object class="java.util.Date">
+      <long>1671318594755</long>
+     </object>
+    </void>
+    <void property="timeZone">
+     <void property="ID">
+      <string>GMT+05:30</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void property="presidiarios">
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object idref="Presidiario0"/>
+    </void>
+    <void method="add">
+     <object idref="Presidiario1"/>
+    </void>
+    <void method="add">
+     <object idref="Presidiario2"/>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
