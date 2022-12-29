@@ -35,7 +35,7 @@ public class SistemaPrisional {
                 FuncionarioCargos.FUNCIONARIO, 
                 true, 
                 true, 
-                "presidio");
+                0);
         var func2 = new Seguranca(1,
                 "nome 1",
                 "123456789",
@@ -43,7 +43,7 @@ public class SistemaPrisional {
                 FuncionarioCargos.SEGURANCA, 
                 true, 
                 true, 
-                "presidio",
+                0,
                 "setor 1");
         var func3 = new Diretor(2,
                 "nome 2",
@@ -52,7 +52,7 @@ public class SistemaPrisional {
                 FuncionarioCargos.DIRETOR, 
                 true, 
                 true, 
-                "presidio");
+                0);
         var funcs = new ArrayList<Funcionario>();
         funcs.add(func1); funcs.add(func2); funcs.add(func3);
         

@@ -40,9 +40,6 @@
               <void property="nome">
                <string>nome</string>
               </void>
-              <void property="nomePresidio">
-               <string>presidio</string>
-              </void>
              </object>
             </void>
             <void property="nomeAtividade">
@@ -80,9 +77,6 @@
               </void>
               <void property="nome">
                <string>nome 1</string>
-              </void>
-              <void property="nomePresidio">
-               <string>presidio</string>
               </void>
               <void property="setor">
                <string>setor 1</string>
@@ -242,9 +236,6 @@
       <void property="nome">
        <string>nome 2</string>
       </void>
-      <void property="nomePresidio">
-       <string>presidio</string>
-      </void>
      </object>
     </void>
    </object>
@@ -253,7 +244,7 @@
    <object class="java.util.GregorianCalendar" id="GregorianCalendar0">
     <void property="time">
      <object class="java.util.Date">
-      <long>1671318594755</long>
+      <long>1671837568338</long>
      </object>
     </void>
     <void property="timeZone">

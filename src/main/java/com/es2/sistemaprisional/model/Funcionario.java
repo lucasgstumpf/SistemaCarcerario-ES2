@@ -16,12 +16,18 @@ public class Funcionario {
     private String cargo;
     private boolean aposentado;
     private boolean emFerias;
-    private String nomePresidio;
+    private int idPresidio;
 
+    @Override
+    public String toString() {
+        return nome;
+    }
+
+    
     public Funcionario() {
     }
 
-    public Funcionario(int id, String nome, String cpf, String email, String cargo, boolean aposentado, boolean emFerias, String nomePresidio) {
+    public Funcionario(int id, String nome, String cpf, String email, String cargo, boolean aposentado, boolean emFerias, int idPresidio) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -29,7 +35,7 @@ public class Funcionario {
         this.cargo = cargo;
         this.aposentado = aposentado;
         this.emFerias = emFerias;
-        this.nomePresidio = nomePresidio;
+        this.idPresidio = idPresidio;
     }
     
     public int getId() {
@@ -88,12 +94,12 @@ public class Funcionario {
         this.emFerias = emFerias;
     }
 
-    public String getNomePresidio() {
-        return nomePresidio;
+    public int getIdPresidio() {
+        return idPresidio;
     }
 
-    public void setNomePresidio(String nomePresidio) {
-        this.nomePresidio = nomePresidio;
+    public void setIdPresidio(String nomePresidio) {
+        this.idPresidio = idPresidio;
     }
     
 }

@@ -11,11 +11,11 @@ package com.es2.sistemaprisional.model;
 public class Seguranca extends Funcionario{
     private String setor;
     public Seguranca() {
-        super(0, null, null, null, null, false, false, null);
+        super(0, null, null, null, null, false, false, -1);
     }  
     
-    public Seguranca(int id, String nome, String cpf, String email, String cargo, boolean aposentado, boolean emFerias, String nomePresidio, String setor) {
-        super(id, nome, cpf, email, cargo, aposentado, emFerias, nomePresidio);
+    public Seguranca(int id, String nome, String cpf, String email, String cargo, boolean aposentado, boolean emFerias, int idPresidio, String setor) {
+        super(id, nome, cpf, email, cargo, aposentado, emFerias, idPresidio);
         this.setor = setor;
     }
 

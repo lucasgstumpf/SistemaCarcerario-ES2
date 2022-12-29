@@ -4,21 +4,34 @@
  */
 package com.es2.sistemaprisional.model.view;
 
-import com.es2.sistemaprisional.controller.DiretorController;
+import com.es2.sistemaprisional.controller.CelaController;
+import com.es2.sistemaprisional.model.FuncionarioComboboxModel;
 import com.es2.sistemaprisional.controller.PresidioController;
+import com.es2.sistemaprisional.controller.PresidiosController;
+import com.es2.sistemaprisional.model.Diretor;
+import com.es2.sistemaprisional.model.Funcionario;
 import com.es2.sistemaprisional.model.FuncionarioCargos;
 import com.es2.sistemaprisional.model.Presidio;
+import com.es2.sistemaprisional.model.PresidioComboBoxModel;
+import com.es2.sistemaprisional.model.Seguranca;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author ranoc
  */
 public class DiretorView extends javax.swing.JFrame {
+    private int diretorId = 2;
     private Presidio presidio;
     private PresidioController presidioCtrl;
-    private DiretorController diretorCtrl;
+    private PresidiosController presidiosCtrl;
+    private FuncionarioComboboxModel comboFuncModel;
+    private PresidioComboBoxModel comboPresidioModel;
+    private DefaultComboBoxModel comboFuncaoModel;
     
     /**
      * Creates new form DiretorView
@@ -26,15 +39,26 @@ public class DiretorView extends javax.swing.JFrame {
     public DiretorView(Presidio presidio) throws Exception {
         this.presidio = presidio;
         presidioCtrl = new PresidioController(presidio);
-        diretorCtrl = new DiretorController(2);
-        System.out.println(diretorCtrl.aposentarFuncionario(1));
-        System.out.println(diretorCtrl.cadastrarCela(5, "setor 2"));
-        System.out.println(diretorCtrl.cadastrarFuncionario(30,
+        presidioCtrl.solicitarAposentarFuncionario(2, 1);
+        presidioCtrl.solicitarCadastroCela(2, 5, "setor 2");
+        presidioCtrl.solicitarCadastroFuncionario(30,
                 "José", 
                 "123456788",
                 "email@emaill.com", 
-                FuncionarioCargos.FUNCIONARIO, 
-                0));
+                FuncionarioCargos.FUNCIONARIO,
+                0,
+                2);
+        
+        presidiosCtrl = new PresidiosController(presidio);
+        comboFuncModel = new FuncionarioComboboxModel(presidioCtrl.getFuncionarios());
+        comboPresidioModel = new PresidioComboBoxModel(presidiosCtrl.getPresidios());
+        String[] funcoes = {
+          FuncionarioCargos.DIRETOR,
+          FuncionarioCargos.FUNCIONARIO,
+          FuncionarioCargos.SEGURANCA
+          
+        };
+        comboFuncaoModel = new DefaultComboBoxModel(funcoes );
         initComponents();
     }
 
@@ -47,21 +71,766 @@ public class DiretorView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu3 = new javax.swing.JMenu();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        panelCadastrarCela = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        inputCelaID = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        inputCelaSetor = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        btnCadastrarCela = new javax.swing.JButton();
+        panelCadastrarFuncionario = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        inputFuncNome = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        inputFuncCPF = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        inputFuncEmail = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        comboFuncFuncao = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        comboFuncPresidio = new javax.swing.JComboBox(comboPresidioModel);
+        inputFuncSetor1 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        btnCadastrarFunc = new javax.swing.JButton();
+        panelEditarFunc = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        checkFuncAposentado = new javax.swing.JCheckBox();
+        jLabel10 = new javax.swing.JLabel();
+        inputFuncNome1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        inputFuncCPF1 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        inputFuncEmail1 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        comboFuncFuncao1 = new javax.swing.JComboBox<>();
+        jLabel15 = new javax.swing.JLabel();
+        comboFuncPresidio1 = new javax.swing.JComboBox(comboPresidioModel);
+        checkFuncFerias = new javax.swing.JCheckBox();
+        jComboBox1 = new javax.swing.JComboBox(comboFuncModel);
+        jLabel16 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        inputFuncSetor = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        btnEditFunc = new javax.swing.JButton();
+        panelEditarPreso = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        miOpen = new javax.swing.JMenuItem();
+        miSave = new javax.swing.JMenuItem();
+        miSaveAs = new javax.swing.JMenuItem();
+        miExit = new javax.swing.JMenuItem();
+        menuEditar = new javax.swing.JMenu();
+        menuFunc = new javax.swing.JMenu();
+        miAposenta = new javax.swing.JMenuItem();
+        miAlterarCargo = new javax.swing.JMenuItem();
+        miAddFerias = new javax.swing.JMenuItem();
+        Presidiário = new javax.swing.JMenu();
+        miAlojar = new javax.swing.JMenuItem();
+        miTransferir = new javax.swing.JMenuItem();
+
+        jMenu3.setText("jMenu3");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(500, 330));
+
+        jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        jTabbedPane1.setMaximumSize(new java.awt.Dimension(600, 400));
+        jTabbedPane1.setMinimumSize(new java.awt.Dimension(600, 400));
+        jTabbedPane1.setPreferredSize(new java.awt.Dimension(600, 400));
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
+
+        panelCadastrarCela.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setText("Cadastrar Cela");
+        jLabel5.setToolTipText("");
+
+        inputCelaID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputCelaIDActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("ID");
+
+        inputCelaSetor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputCelaSetorActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Setor");
+
+        btnCadastrarCela.setText("Cadastrar");
+        btnCadastrarCela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarCelaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inputCelaID)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel8))
+                                .addGap(0, 117, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inputCelaSetor, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCadastrarCela, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGap(14, 14, 14)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputCelaID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputCelaSetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+                .addComponent(btnCadastrarCela, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout panelCadastrarCelaLayout = new javax.swing.GroupLayout(panelCadastrarCela);
+        panelCadastrarCela.setLayout(panelCadastrarCelaLayout);
+        panelCadastrarCelaLayout.setHorizontalGroup(
+            panelCadastrarCelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(panelCadastrarCelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelCadastrarCelaLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        panelCadastrarCelaLayout.setVerticalGroup(
+            panelCadastrarCelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 369, Short.MAX_VALUE)
+            .addGroup(panelCadastrarCelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelCadastrarCelaLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        jTabbedPane1.addTab("Cadastrar Cela", panelCadastrarCela);
+
+        panelCadastrarFuncionario.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("Cadastrar Funcionário");
+        jLabel1.setToolTipText("");
+
+        jLabel2.setText("Nome");
+
+        jLabel3.setText("CPF");
+
+        inputFuncEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputFuncEmailActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Email");
+
+        jLabel6.setText("Função");
+
+        comboFuncFuncao.setModel(comboFuncaoModel);
+        comboFuncFuncao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboFuncFuncaoActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Presídio");
+
+        inputFuncSetor1.setEnabled(false);
+        inputFuncSetor1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputFuncSetor1ActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setText("Setor");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inputFuncNome)
+                    .addComponent(inputFuncCPF)
+                    .addComponent(inputFuncEmail)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(0, 85, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboFuncFuncao, 0, 287, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(comboFuncPresidio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addGap(178, 178, 178))
+                    .addComponent(inputFuncSetor1))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputFuncSetor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(inputFuncNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboFuncFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(inputFuncCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboFuncPresidio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputFuncEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(168, Short.MAX_VALUE))
+        );
+
+        btnCadastrarFunc.setText("Cadastrar");
+        btnCadastrarFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarFuncActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelCadastrarFuncionarioLayout = new javax.swing.GroupLayout(panelCadastrarFuncionario);
+        panelCadastrarFuncionario.setLayout(panelCadastrarFuncionarioLayout);
+        panelCadastrarFuncionarioLayout.setHorizontalGroup(
+            panelCadastrarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastrarFuncionarioLayout.createSequentialGroup()
+                .addContainerGap(441, Short.MAX_VALUE)
+                .addComponent(btnCadastrarFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(panelCadastrarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelCadastrarFuncionarioLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        panelCadastrarFuncionarioLayout.setVerticalGroup(
+            panelCadastrarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastrarFuncionarioLayout.createSequentialGroup()
+                .addContainerGap(322, Short.MAX_VALUE)
+                .addComponent(btnCadastrarFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(panelCadastrarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelCadastrarFuncionarioLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        jTabbedPane1.addTab("Cadastrar Funcionário", panelCadastrarFuncionario);
+
+        panelEditarFunc.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        checkFuncAposentado.setText("Aposentado");
+        checkFuncAposentado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkFuncAposentadoActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel10.setText("Editar Funcionário");
+        jLabel10.setToolTipText("");
+
+        jLabel11.setText("Nome");
+
+        jLabel12.setText("CPF");
+
+        inputFuncEmail1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputFuncEmail1ActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setText("Email");
+
+        jLabel14.setText("Função");
+
+        comboFuncFuncao1.setModel(comboFuncaoModel);
+        comboFuncFuncao1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboFuncFuncao1ActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setText("Presídio");
+
+        checkFuncFerias.setText("Em férias");
+        checkFuncFerias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkFuncFeriasActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        jComboBox1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jComboBox1PropertyChange(evt);
+            }
+        });
+
+        jLabel16.setText("Selecionar Funcionário");
+
+        inputFuncSetor.setEnabled(false);
+        inputFuncSetor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputFuncSetorActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("Setor");
+
+        btnEditFunc.setText("Editar");
+        btnEditFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditFuncActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel17))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(inputFuncSetor, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inputFuncNome1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inputFuncCPF1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inputFuncEmail1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel13))
+                                .addGap(0, 143, Short.MAX_VALUE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(comboFuncFuncao1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(comboFuncPresidio1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel15)
+                                                    .addComponent(jLabel14))
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addContainerGap())
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(checkFuncAposentado)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                                        .addComponent(checkFuncFerias))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEditFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addGap(13, 13, 13)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inputFuncNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboFuncFuncao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inputFuncCPF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboFuncPresidio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inputFuncEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkFuncAposentado)
+                    .addComponent(checkFuncFerias))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputFuncSetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(39, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnEditFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+
+        javax.swing.GroupLayout panelEditarFuncLayout = new javax.swing.GroupLayout(panelEditarFunc);
+        panelEditarFunc.setLayout(panelEditarFuncLayout);
+        panelEditarFuncLayout.setHorizontalGroup(
+            panelEditarFuncLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEditarFuncLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        panelEditarFuncLayout.setVerticalGroup(
+            panelEditarFuncLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEditarFuncLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Editar Funcionário", panelEditarFunc);
+
+        javax.swing.GroupLayout panelEditarPresoLayout = new javax.swing.GroupLayout(panelEditarPreso);
+        panelEditarPreso.setLayout(panelEditarPresoLayout);
+        panelEditarPresoLayout.setHorizontalGroup(
+            panelEditarPresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+        );
+        panelEditarPresoLayout.setVerticalGroup(
+            panelEditarPresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 369, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Editar Presidiário", panelEditarPreso);
+
+        jMenu1.setText("File");
+
+        miOpen.setText("Open");
+        jMenu1.add(miOpen);
+
+        miSave.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        miSave.setText("Save");
+        jMenu1.add(miSave);
+
+        miSaveAs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        miSaveAs.setText("Save As...");
+        jMenu1.add(miSaveAs);
+
+        miExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        miExit.setText("Exit");
+        miExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miExitActionPerformed(evt);
+            }
+        });
+        jMenu1.add(miExit);
+
+        jMenuBar1.add(jMenu1);
+
+        menuEditar.setText("Editar");
+
+        menuFunc.setText("Funcionário");
+
+        miAposenta.setText("Aposentar");
+        menuFunc.add(miAposenta);
+
+        miAlterarCargo.setText("Alterar Cargo");
+        menuFunc.add(miAlterarCargo);
+
+        miAddFerias.setText("Férias");
+        menuFunc.add(miAddFerias);
+
+        menuEditar.add(menuFunc);
+
+        Presidiário.setText("Presidiário");
+
+        miAlojar.setText("Alojar");
+        miAlojar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAlojarActionPerformed(evt);
+            }
+        });
+        Presidiário.add(miAlojar);
+
+        miTransferir.setText("Transferir");
+        Presidiário.add(miTransferir);
+
+        menuEditar.add(Presidiário);
+
+        jMenuBar1.add(menuEditar);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void miExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_miExitActionPerformed
+
+    private void miAlojarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAlojarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_miAlojarActionPerformed
+
+    private void comboFuncFuncaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFuncFuncaoActionPerformed
+        if(comboFuncFuncao.getSelectedItem() == FuncionarioCargos.SEGURANCA){
+            inputFuncSetor1.setEnabled(true);
+        }else{
+            inputFuncSetor1.setEnabled(false);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboFuncFuncaoActionPerformed
+
+    private void inputFuncEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputFuncEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputFuncEmailActionPerformed
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        comboFuncModel.clear();
+        comboFuncModel.addListFuncionario(presidioCtrl.getFuncionarios());
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTabbedPane1StateChanged
+
+    private void inputCelaSetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputCelaSetorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputCelaSetorActionPerformed
+
+    private void inputCelaIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputCelaIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputCelaIDActionPerformed
+
+    private void btnCadastrarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFuncActionPerformed
+        var nome = inputFuncNome.getText();
+        var cpf = inputFuncCPF.getText();
+        var email = inputFuncEmail.getText();
+        var cargo = (String) comboFuncFuncao.getSelectedItem();
+        var presidioInputVal = comboPresidioModel.getElementAt(comboFuncPresidio.getSelectedIndex());
+        if(nome.isBlank() || cpf.isBlank() || email.isBlank() || cargo.isEmpty() || presidioInputVal == null)
+            return;
+        Funcionario func = null;
+        
+        var id = (int) (Math.random() * 5000);
+        func = presidioCtrl.solicitarCadastroFuncionario(
+                id, 
+                cpf,
+                nome, 
+                email, 
+                cargo,
+                presidioInputVal.getId(),
+                diretorId);
+        if(func  == null){
+            return;  
+        }
+        
+        System.out.println(func);
+        inputFuncNome.setText("");
+        inputFuncCPF.setText("");
+        inputFuncEmail.setText("");
+        comboFuncFuncao.setSelectedIndex(0);
+        comboFuncPresidio.setSelectedIndex(0);
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnCadastrarFuncActionPerformed
+
+    private void inputFuncEmail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputFuncEmail1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputFuncEmail1ActionPerformed
+
+    private void comboFuncFuncao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFuncFuncao1ActionPerformed
+        if(comboFuncFuncao.getSelectedItem() == FuncionarioCargos.SEGURANCA){
+            inputFuncSetor.setEnabled(true);
+        }else{
+            inputFuncSetor.setEnabled(false);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_comboFuncFuncao1ActionPerformed
+
+    private void checkFuncFeriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkFuncFeriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkFuncFeriasActionPerformed
+
+    private void checkFuncAposentadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkFuncAposentadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkFuncAposentadoActionPerformed
+
+    private void jComboBox1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBox1PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1PropertyChange
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        var func = (Funcionario) jComboBox1.getSelectedItem();
+        inputFuncNome1.setText(func.getNome());
+        inputFuncCPF1.setText(func.getCpf());
+        inputFuncEmail1.setText(func.getEmail());
+        comboFuncFuncao1.setSelectedItem(func.getCargo());
+        try {
+            comboFuncPresidio1.setSelectedIndex(func.getIdPresidio());
+        } catch (Exception e) {
+            System.out.println("Presidio não encontrado");
+        }
+        checkFuncAposentado.setSelected(func.isAposentado());
+        checkFuncFerias.setSelected(func.isEmFerias());
+        if(jComboBox1.getSelectedItem() instanceof Seguranca){
+            var temp_func = (Seguranca) jComboBox1.getSelectedItem();
+            inputCelaSetor.setText(temp_func.getSetor());
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void inputFuncSetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputFuncSetorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputFuncSetorActionPerformed
+
+    private void inputFuncSetor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputFuncSetor1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputFuncSetor1ActionPerformed
+
+    private void btnEditFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditFuncActionPerformed
+        var nome = inputFuncNome1.getText();
+        var cpf = inputFuncCPF1.getText();
+        var email = inputFuncEmail1.getText();
+        var cargo = (String) comboFuncFuncao1.getSelectedItem();
+        var presidioInputVal = comboPresidioModel.getElementAt(comboFuncPresidio1.getSelectedIndex());
+        if(nome.isBlank() || cpf.isBlank() || email.isBlank() || cargo.isEmpty() || presidioInputVal == null)
+            return;
+        Funcionario func = null;
+        
+        var isAposentado = checkFuncAposentado.isSelected();
+        var isEmFerias = checkFuncFerias.isSelected();
+        var funcId = ((Funcionario) jComboBox1.getSelectedItem()).getId();
+        presidioCtrl.solicitarAlterarCargoFuncionario(diretorId, funcId, cargo);
+        presidioCtrl.solicitarAposentarFuncionario(diretorId, funcId);
+        if(isAposentado)
+            presidioCtrl.solicitarTransferirFuncionario(diretorId, funcId, presidioInputVal.getId());
+        if(isEmFerias)
+            presidioCtrl.solicitarFeriasFuncionario(diretorId, funcId);
+   
+        inputFuncNome1.setText("");
+        inputFuncCPF1.setText("");
+        inputFuncEmail1.setText("");
+        comboFuncFuncao1.setSelectedIndex(0);
+        comboFuncPresidio1.setSelectedIndex(0);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditFuncActionPerformed
+
+    private void btnCadastrarCelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarCelaActionPerformed
+        var celaIdStr = inputCelaID.getText();
+        var setor = inputCelaSetor.getText();
+        
+        try { 
+            var celaId = Integer.parseInt(celaIdStr);
+            presidioCtrl.solicitarCadastroCela(diretorId, celaId, setor);
+            inputCelaID.setText("");
+            inputCelaSetor.setText("");
+        } catch (Exception e) {
+            
+        }
+        
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCadastrarCelaActionPerformed
 
     /**
      * @param presidio é o presídio inicial carregado pelo sistema de arquivos
@@ -106,5 +875,69 @@ public class DiretorView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Presidiário;
+    private javax.swing.JButton btnCadastrarCela;
+    private javax.swing.JButton btnCadastrarFunc;
+    private javax.swing.JButton btnEditFunc;
+    private javax.swing.JCheckBox checkFuncAposentado;
+    private javax.swing.JCheckBox checkFuncFerias;
+    private javax.swing.JComboBox<String> comboFuncFuncao;
+    private javax.swing.JComboBox<String> comboFuncFuncao1;
+    private javax.swing.JComboBox<String> comboFuncPresidio;
+    private javax.swing.JComboBox<String> comboFuncPresidio1;
+    private javax.swing.JTextField inputCelaID;
+    private javax.swing.JTextField inputCelaSetor;
+    private javax.swing.JTextField inputFuncCPF;
+    private javax.swing.JTextField inputFuncCPF1;
+    private javax.swing.JTextField inputFuncEmail;
+    private javax.swing.JTextField inputFuncEmail1;
+    private javax.swing.JTextField inputFuncNome;
+    private javax.swing.JTextField inputFuncNome1;
+    private javax.swing.JTextField inputFuncSetor;
+    private javax.swing.JTextField inputFuncSetor1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JMenu menuEditar;
+    private javax.swing.JMenu menuFunc;
+    private javax.swing.JMenuItem miAddFerias;
+    private javax.swing.JMenuItem miAlojar;
+    private javax.swing.JMenuItem miAlterarCargo;
+    private javax.swing.JMenuItem miAposenta;
+    private javax.swing.JMenuItem miExit;
+    private javax.swing.JMenuItem miOpen;
+    private javax.swing.JMenuItem miSave;
+    private javax.swing.JMenuItem miSaveAs;
+    private javax.swing.JMenuItem miTransferir;
+    private javax.swing.JPanel panelCadastrarCela;
+    private javax.swing.JPanel panelCadastrarFuncionario;
+    private javax.swing.JPanel panelEditarFunc;
+    private javax.swing.JPanel panelEditarPreso;
     // End of variables declaration//GEN-END:variables
 }

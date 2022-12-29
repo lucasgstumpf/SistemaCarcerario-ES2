@@ -4,11 +4,17 @@
  */
 package com.es2.sistemaprisional.model;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 /**
  *
  * @author ranoc
  */
 public class FuncionarioCargos {
+    
     public final static String SEGURANCA = "seguranca";
     public final static String DIRETOR = "diretor";
     public final static String FUNCIONARIO = "funcionario";

@@ -23,6 +23,13 @@ public class Presidio {
         
     }
 
+    @Override
+    public String toString() {
+        return "Presídio "+ id;
+    }
+    
+    
+
     public Presidio(int id, ArrayList<Funcionario> funcionarios, ArrayList<Cela> celas, ArrayList<Presidiario> presidiarios, GregorianCalendar horario) {
         this.id = id;
         this.funcionarios = funcionarios;

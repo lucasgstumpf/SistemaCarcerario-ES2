@@ -19,7 +19,11 @@ public class DiretorController {
     private Diretor diretor;
 
     public DiretorController(int diretor_id) {
-        PresidioController.getFuncionarios().stream().filter(funcs -> funcs.getId()==diretor_id);
+        
+        diretor = (Diretor) PresidioController.getFuncionarios().stream().filter(funcs -> funcs.getId()==diretor_id).findFirst().orElse(null);
+        if(diretor == null){
+            throw new Error("DIretor não encontrado!");
+        }
     }
     
     public boolean transferirPresidiario(String presidiario_cpf, int id_presidio){
@@ -102,7 +106,7 @@ public class DiretorController {
         if(funcCtrl.getFuncionario() != null){
             return null;
         }
-        var new_func = new Funcionario(idPresidio, nome, cpf, email, cargo, false, false, nome);
+        var new_func = new Funcionario(id_funcionario, nome, cpf, email, cargo, false, false, idPresidio);
         PresidioController.getFuncionarios().add(new_func);
         funcCtrl = new FuncionarioController(id_funcionario);
         return funcCtrl.getFuncionario();

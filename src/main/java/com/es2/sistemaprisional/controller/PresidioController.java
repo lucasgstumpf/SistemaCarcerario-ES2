@@ -107,15 +107,16 @@ public class PresidioController {
             String nome,
             String email,
             String cargo,
+            int id_presidio,
             int diretor_id){
         var diretorCtrl = new DiretorController(diretor_id);
         return diretorCtrl.cadastrarFuncionario(
                 id_funcionario,
                 nome, 
-                cargo, 
+                funcionario_cpf, 
                 email, 
                 cargo, 
-                PresidioController.presidio.getId());
+                id_presidio);
     }
     
     public boolean solicitarTransferirPresidiario(int diretor_id, String presidiario_cpf, int id_presidio){

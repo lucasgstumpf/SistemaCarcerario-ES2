@@ -18,6 +18,12 @@ public class PresidiosController {
         presidios = new ArrayList<>();
         presidios.add(presidio);
     }
+
+    public static ArrayList<Presidio> getPresidios() {
+        return presidios;
+    }
+    
+    
     
     public static Presidio findPresidioById(int presidio_id){
         return presidios.stream().filter(presidio -> presidio.getId() == presidio_id).findFirst().orElse(null);
